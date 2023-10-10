@@ -4,9 +4,5 @@ const inputs = fs.readFileSync(filePath).toString().trim().split("\n").map(Numbe
 inputs.sort((a,b) => a-b);
 let sum = inputs.reduce((cur, el) => cur + el, 0);
 
-
-
-
-
 console.log(sum / 5);
 console.log(inputs[2]);

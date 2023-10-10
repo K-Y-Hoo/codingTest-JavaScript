@@ -12,6 +12,7 @@ function solution(n, numbers) {
     const number = numbers.shift();
     while (count <= number) {
       stack.push(count++);
+      console.log(stack);
       answer += '+ ';
     }
     const poped = stack.pop();
