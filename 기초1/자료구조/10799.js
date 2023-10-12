@@ -38,7 +38,6 @@ for (let i = 0; i < temp.length; i++) {
 console.log(answer+total);*/
 
 const splitExpression = inputs
-console.log(splitExpression);
 let bar = [];
 let answer = 0;
 
