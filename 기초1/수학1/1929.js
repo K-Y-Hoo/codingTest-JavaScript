@@ -12,7 +12,6 @@ for (let i = 2; i <= Math.ceil(Math.sqrt(b)); i++) {
     prime[j] = true;
   }
 }
-console.log(prime)
 for (let i = a; i<=b; i++) {
   if (!prime[i]) {
     result.push(i);
