@@ -5,23 +5,21 @@ let s = input.shift().trim();
 let t = input.shift().trim();
 let answer = 0;
 
-for (let i = 0; i < 1002; i++) {
-  if (t === s) {
+function dfs(T) {
+  if (s === T) {
     answer = 1;
-    break;
+    return;
   }
-
-  if (t[t.length - 1] === "A") {
-    t = t.substring(0, t.length - 1);
-    //console.log(t);
-  } else if (t[t.length - 1] === "B") {
-    t = t
-      .substring(0, t.length - 1)
-      .split("")
-      .reverse()
-      .join("");
-    //console.log(t);
+  if (T.length === 0) {
+    return;
+  }
+  if (T[T.length - 1] === "A") {
+    dfs(T.slice(0, T.length - 1));
+  }
+  if (T[0] === "B") {
+    dfs([...T.slice(1)].reverse().join(""));
   }
 }
 
+dfs(t);
 console.log(answer);
