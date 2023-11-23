@@ -47,14 +47,13 @@ class Queue {
 }
 const queue = new Queue();
 
-const [n, m] = info.split(" ").map(Number);
+const [m, n] = info.split(" ").map(Number);
 const board = input.map((item) => item.trim().split(""));
 const whiteVisited = Array.from(Array(n), () => new Array(m).fill(false));
-const blueVisited = Array.from(Array(n), () => new Array(m).fill(false));
 const dx = [-1, 1, 0, 0]; // 상하좌우
 const dy = [0, 0, -1, 1];
 
-function whiteBfs(x, y) {
+function bfs(x, y, color) {
   queue.push([x, y]);
   let count = 0;
   while (queue.size()) {
@@ -68,28 +67,7 @@ function whiteBfs(x, y) {
       let ddy = y + dy[i];
       if (ddx < 0 || ddx >= n || ddy < 0 || ddy >= m) continue;
       if (whiteVisited[ddx][ddy]) continue;
-      if (board[ddx][ddy] === "." || board[ddx][ddy] === "B") continue;
-      queue.push([ddx, ddy]);
-    }
-  }
-  return count;
-}
-
-function blueBfs(x, y) {
-  queue.push([x, y]);
-  let count = 0;
-  while (queue.size()) {
-    const [x, y] = queue.popLeft();
-    if (blueVisited[x][y]) continue;
-    blueVisited[x][y] = true;
-    board[x][y] = ".";
-    count++;
-    for (let i = 0; i < 4; i++) {
-      let ddx = x + dx[i];
-      let ddy = y + dy[i];
-      if (ddx < 0 || ddx >= n || ddy < 0 || ddy >= m) continue;
-      if (blueVisited[ddx][ddy]) continue;
-      if (board[ddx][ddy] === "." || board[ddx][ddy] === "W") continue;
+      if (board[ddx][ddy] === "." || board[ddx][ddy] === color) continue;
       queue.push([ddx, ddy]);
     }
   }
@@ -101,9 +79,9 @@ let blue = 0;
 for (let i = 0; i < n; i++) {
   for (let j = 0; j < m; j++) {
     if (board[i][j] === "W") {
-      white += whiteBfs(i, j) ** 2;
+      white += bfs(i, j, "B") ** 2;
     } else if (board[i][j] === "B") {
-      blue += blueBfs(i, j) ** 2;
+      blue += bfs(i, j, "W") ** 2;
     }
   }
 }
