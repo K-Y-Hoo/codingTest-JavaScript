@@ -17,7 +17,6 @@ for (let i = 0; i < n; i++) {
     answer.push(stack[stack.length - 1] + 1);
   }
   stack.push(i);
-  console.log(stack);
 }
 
 console.log(answer.join(" "));
