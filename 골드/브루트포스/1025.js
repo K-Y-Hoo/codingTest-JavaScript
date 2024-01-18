@@ -9,11 +9,6 @@ const [n, m] = info.split(" ").map(Number);
 const board = input.map((el) => el.trim().split("").map(Number));
 let answer = -1;
 
-function sqr(num) {
-  const result = Math.sqrt(num);
-  return String(result).length === 1 ? true : false;
-}
-
 for (let i = 0; i < n; i++) {
   for (let j = 0; j < m; j++) {
     for (let row = -n; row < n; row++) {
